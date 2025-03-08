@@ -1,0 +1,10 @@
+
+# esc spc to accept suggestion
+bindkey '\e ' autosuggest-accept
+
+# esc x to exit
+bindkey -s '\ex' '^C^U^Kexit\n'
+
+# esc t to toggle transparency
+bindkey -s '\et' '^U^Ktoggle_transparency\n'
+

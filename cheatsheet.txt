@@ -1,0 +1,136 @@
+terminal tips:
+
+  tldr [cmd]: display help for [cmd]
+  ssha: add key (github) to ssh agent
+
+  custom:
+    esc spc: accept autocomplete
+    esc t: toggle transparency
+    esc x: exit; kill terminal
+
+  general:
+    sudo: super do; use admin priveleges
+    !!: run prev cmd
+    tab: cycle through suggestions
+
+    cd: change directory
+      -/+ : go to prev/forward dir (like alt arrows in browser)
+      .. : go up 1 dir
+
+    ls: list files
+    rm: remove file
+    cp: copy file
+    mkdir: make directory
+
+    cl: clear
+    btop: basically task mgr
+    history: display history
+
+  # [dir] means directory name without brackets 
+  file nav:
+    cod [dir]: cd ~/coding/[dir] && ls
+    py [dir]: cd ~/coding/python/[dir] && ls
+    c# [dir]: cd ~/coding/python/c#/[dir] && ls
+    nt [file]: cd ~/coding/notes && nvim file
+
+  run:
+    pyr: run python file {using custom pyrun.sh} 
+    dnr: run c# file {using custom dotnetrun.sh}
+    pyp [cmd]: pip [cmd]
+
+  configs:
+    zshc: edit ~/.zshrc
+    zshs: source ~/.zshrc
+    nvc: edit nvim config file
+    nvs: source nvim config file
+
+  shortcuts:
+    ctrl u/k: delete before/after cursor
+    ctrl b/f: move cursor back/forward 1 line
+    alt b/f: move cursor back/forward 1 word
+    up/down: cycle through prev cmds
+
+
+nvim cheatsheet:
+
+  [use num+hjkl to jump number of characters eg 4j= down 4 lines]
+  h: left
+  j: down
+  k: up
+  l: right
+
+  3 modes: normal [esc/caps], insert [i/a/o/O], visual [v]
+
+  - deleting something automatically copies it
+  - colon and semicolon are swapped {custom}
+  - caps is bound to esc {custom}
+
+  normal mode[esc]:
+    keybinds:
+      esc q: ':wq' (save & quit)
+      esc w: ':w' (save)
+      esc a: 'qa!' (dont save & quit)
+      esc x: 'q' (ask save & quit)
+      esc r: run python file
+      esc c: run c# file
+      esc n: new terminal split to right
+      esc hjkl: move splits
+      esc u: ':UndotreeToggle' (show file history)
+
+      spc /: comment/uncomment line
+      spc ff: open file search (telescope)
+     
+      ctrl n: open/close file nav:
+        spc e: focus file nav
+
+      ':line num': jump to line
+
+    navigation:
+      hjkl: move cursor 1 character
+      b: beginning of previous word
+      e: end of next word:
+      s/S: search on screen before/after cursor
+      /: search whole file: 
+        n/N: next/previous result
+      ctrl home/end: start/end of file
+
+    inserting:
+      i/e: before/after cursor
+      o/O: new line above/below
+      r: replace character
+      ctrl+shift+v/p: paste 
+      ctrl r: redo
+
+    deleting:
+      v: enter visual mode
+      dw: word in front of cursor
+      dd: line
+      d0/d$: from cursor to start/end of line
+      x: character under cursor
+      u: undo
+
+  insert mode[i/a/o/O]:
+    ctrl b/e: beginning/end of line 
+    ctrl w: delete prev word
+    ctrl hjkl: move cursor
+    ctrl r: undo
+
+  visual mode[v]:
+    hjkl: move cursor
+    shift v: highlight full line(s)
+    p: replace with paste
+    d: delete highlighted parts only
+    shift d: delete all lines (including partially highlighted)
+    spc /: comment/uncomment all lines
+    <>: indent/unindent lines
+
+  hardly used:
+    [normal]:
+      esc v: open vertical split
+      esc t: toggle transparency
+
+      ysiw[)]: surround word with [char]
+
+      spc rn: toggle relative line num
+      spc ch: open cheatsheet (its kinda meh)
+
