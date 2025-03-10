@@ -89,27 +89,36 @@ nvim cheatsheet:
       hjkl: move cursor 1 character
       b: beginning of previous word
       e: end of next word:
+      ctrl d/u: half-page scrolling [25 lines]
       s/S: search on screen before/after cursor
       /: search whole file: 
         n/N: next/previous result
       ctrl home/end: start/end of file
 
     inserting:
-      i/e: before/after cursor
+      i/a: before/after cursor
+      I/A: start/end of line (excl. whitespaces)
       o/O: new line above/below
-      r: replace character
       ctrl+shift+v/p: paste 
       ctrl r: redo
+
+    changing (insert + delete):
+      r: replace character
+      cw: word
+      ciw/W: word/string under cursor
+      cc: line
 
     deleting:
       v: enter visual mode
       dw: word in front of cursor
+      diw/W: word/string under cursor
       dd: line
       d0/d$: from cursor to start/end of line
       x: character under cursor
       u: undo
 
   insert mode[i/a/o/O]:
+    esc s: replace all instances of word {custom}
     ctrl b/e: beginning/end of line 
     ctrl w: delete prev word
     ctrl hjkl: move cursor
@@ -117,6 +126,7 @@ nvim cheatsheet:
 
   visual mode[v]:
     hjkl: move cursor
+    J/K: move highlighted block
     shift v: highlight full line(s)
     p: replace with paste
     d: delete highlighted parts only
@@ -128,9 +138,15 @@ nvim cheatsheet:
     [normal]:
       esc v: open vertical split
       esc t: toggle transparency
+      spc esc x: make executable
 
       ysiw[)]: surround word with [char]
 
       spc rn: toggle relative line num
       spc ch: open cheatsheet (its kinda meh)
+
+notes:
+  -anything with esc is custom
+  -spc is the default leader key for nvchad
+  -some prefer caps to ctrl rather than esc, modify accordingly 
 

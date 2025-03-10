@@ -23,13 +23,11 @@ dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
-vim.o.relativenumber = true
-
 vim.g.python3_host_prog = '/home/ikqxzi/.venv/nvim/bin/python'
 vim.g.loaded_python3_provider = nil
 
--- Rebind h to enter Insert mode (instead of moving left)
---vim.api.nvim_set_keymap('n', 'h', 'i', { noremap = true })  -- h -> insert mode
+
+-- Transparency stuff
 
 -- Function to synchronize Neovim transparency with terminal
 function sync_transparency_with_terminal()
@@ -45,7 +43,7 @@ function sync_transparency_with_terminal()
         vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
     else
         -- Set a default opaque background color for Neovim
-        vim.cmd("hi Normal guibg=#192330")  -- Replace with your default background color
+        vim.cmd("hi Normal guibg=#192330")
         vim.cmd("hi NormalNC guibg=#192330")
     end
 end
@@ -65,16 +63,16 @@ function toggle_transparency()
         vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
         vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
     else
-        vim.cmd("hi Normal guibg=#192330") -- Replace with your default color
+        vim.cmd("hi Normal guibg=#192330") 
         vim.cmd("hi NormalNC guibg=#192330")
     end
 end
 
--- Map the toggle function to a keybinding
+-- esc t: toggle transparency
 vim.api.nvim_set_keymap("n", "<Esc>t", ":lua toggle_transparency()<CR>", { noremap = true, silent = true })
 
--- Slightly faster maybe (maybe)
-vim.api.nvim_command('command! Q1 qa!')
+
+-- Keybinds
 
 -- Swap semicolon & colon in normal, command, and insert modes
 vim.api.nvim_set_keymap('n', ';', ':', { noremap = true })
@@ -84,40 +82,41 @@ vim.api.nvim_set_keymap("c", ":", ";", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", ";", ":", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", ":", ";", { noremap = true, silent = true })
 
--- Create an autocmd group to manage your settings
-vim.api.nvim_create_augroup("CSharpIndent", { clear = true })
+-- Nav
 
--- Set indent to 4 spaces for .cs and .csx files
-vim.api.nvim_create_autocmd("FileType", {
-  group = "CSharpIndent",
-  pattern = { "cs", "csx" },
-  callback = function()
-    vim.bo.tabstop = 4      -- Number of spaces that a <Tab> in the file counts for
-    vim.bo.softtabstop = 4  -- Number of spaces inserted when <Tab> is pressed
-    vim.bo.shiftwidth = 4   -- Number of spaces for autoindent
-    vim.bo.expandtab = true -- Use spaces instead of tabs
-  end,
-})
+-- Make JK move highlighted blocks
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Keybinding to run a Python file with Esc + r
-vim.api.nvim_set_keymap('n', '<Esc>r', ':w | :!~/.venv/nvim/bin/python -u %<CR>', { noremap = true, silent = true })
+-- C-d/u: half-page scrolling, with centered cursor
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
+
+-- Center cursor for search results
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Easy replace with esc s (can stop auto-remove if wanted)
+vim.keymap.set("n", "<Esc>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left><C-w>]])
+
+-- Easy make exe 
+vim.keymap.set("n", "<Leader><Esc>x", ":w | <cmd>!chmod +x %<CR>", { silent = true })
+
+-- Quick exit etc
 vim.api.nvim_set_keymap('n', '<Esc>w', ':w <CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Esc>x', ':q <CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Esc>q', ':wq <CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Esc>a', ':qa! <CR>', { noremap = true, silent = true })
 
--- UndoTree toggle esc m
+-- pyr: esc r, dnr: esc c
+vim.api.nvim_set_keymap('n', '<Esc>r', ':w | :!pyr %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Esc>c', ':w | :!dnr', { noremap = true, silent = true })
+
+-- UndoTree toggle shift esc m
 vim.api.nvim_set_keymap('n', '<Esc>u', ':UndotreeToggle<CR>', { noremap = true, silent = true })
 
--- Keybinding to run a C# file with Esc + c
-vim.api.nvim_set_keymap('n', '<Esc>c', ':w | :!dotnet run', { noremap = true, silent = true })
 
--- So inserting is auto-indented
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-
--- Ensure the Nightfox theme is loaded
--- vim.cmd("colorscheme nightfox")
+-- Terminal stuff
 
 -- Terminal ezpz using esc n (new terminal)
 vim.keymap.set("n", "<Esc>n", function()
@@ -156,6 +155,30 @@ vim.keymap.set("n", "<Esc>l", function()
   vim.api.nvim_input("i")
 end, { desc = "Move to window l and enter insert mode" })
 
+
+-- Formatting 
+
+-- Create an autocmd group to manage settings
+vim.api.nvim_create_augroup("CSharpIndent", { clear = true })
+
+-- Set indent to 4 spaces for .cs and .csx files
+vim.api.nvim_create_autocmd("FileType", {
+  group = "CSharpIndent",
+  pattern = { "cs", "csx" },
+  callback = function()
+    vim.bo.tabstop = 4      -- Number of spaces that a <Tab> in the file counts for
+    vim.bo.softtabstop = 4  -- Number of spaces inserted when <Tab> is pressed
+    vim.bo.shiftwidth = 4   -- Number of spaces for autoindent
+    vim.bo.expandtab = true -- Use spaces instead of tabs
+  end,
+})
+
+-- So inserting is auto-indented
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+
+-- TODO: add regular number alongside relative
+vim.o.relativenumber = true
 
 -- Automatically disable line numbers when a terminal is opened
 vim.cmd([[

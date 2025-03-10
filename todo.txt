@@ -1,0 +1,18 @@
+nvim:
+  plugins:
+    harpoon 
+    wokwi (or equivalent)
+
+  keybinds:
+    add C-w to esc s replace
+
+  behaviour:
+    stop tab menu when not absolute match
+      (eg so np does not autocomplete to numpy)
+
+  appearance:
+    both relative and absolute line numbers
+
+zsh:
+  LaTeX compiler
+  tmux?

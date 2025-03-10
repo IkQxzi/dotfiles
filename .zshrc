@@ -75,7 +75,11 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+# where keybinds are stored
 source ~/.zsh_bindkey
+
+# to update dotfiles automatically
+source ~/coding/dotfiles/update_dotfiles.sh
 
 export PATH="$PATH:/home/ikqxzi/.dotnet"
 
@@ -138,6 +142,14 @@ cod() {
   cd ~/coding
   if [ -n "$1" ]; then
     cd "$1"
+  fi
+  ls
+}
+
+dtf() {
+  cd ~/coding/dotfiles
+   if [ -n "$1" ]; then
+    nvim "$1"
   fi
   ls
 }
