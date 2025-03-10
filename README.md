@@ -1,5 +1,8 @@
 **My Current (WIP) Linux config:**
 
+**Required Plugins:**
+nvim: undotree 
+
 -OS: **Ubuntu 24 LTS**
   
 -Window Manager: **GNOME**

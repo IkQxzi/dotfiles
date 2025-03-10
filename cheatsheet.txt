@@ -45,7 +45,8 @@ terminal tips:
     nvs: source nvim config file
 
   shortcuts:
-    ctrl u/k: delete before/after cursor
+    alt backspace: delete prev word
+    ctrl u/k: delete all before/after cursor
     ctrl b/f: move cursor back/forward 1 line
     alt b/f: move cursor back/forward 1 word
     up/down: cycle through prev cmds
