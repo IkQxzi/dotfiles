@@ -1,8 +1,13 @@
 **My Current (WIP) Linux config:**
 
+**Run auto_install.sh as sudo to install all prerequisites**
+
 **Prerequisites:**
+
 It is highly recommended to rebind Caps Lock to Esc, either by:
+
 -using GNOME tweaks to set it system-wide
+
 -using xmodmap in .zshrc to set it in terminal only
 
 zsh: zsh-autosuggestions, zsh-syntax-highlighting, git
