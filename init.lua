@@ -23,7 +23,7 @@ dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
-vim.g.python3_host_prog = '/home/ikqxzi/.venv/nvim/bin/python'
+vim.g.python3_host_prog = '$HOME/.venv/nvim/bin/python'
 vim.g.loaded_python3_provider = nil
 
 
@@ -96,11 +96,19 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Easy replace with esc s (can stop auto-remove if wanted)
-vim.keymap.set("n", "<Esc>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left><C-w>]])
+-- Delete/Replace
+
+-- dh/dl to delete from start/end to cursor
+vim.keymap.set("n", "dh", "d0")
+vim.keymap.set("n", "dl", "d$")
+
+-- Easy replace with esc c [change] (can stop auto-remove if wanted)
+vim.keymap.set("n", "<Esc>c", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left><C-w>]])
+
+-- Admin?
 
 -- Easy make exe 
-vim.keymap.set("n", "<Leader><Esc>x", ":w | <cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<Leader><S-x>", ":w | <cmd>!chmod +x %<CR>", { silent = true })
 
 -- Quick exit etc
 vim.api.nvim_set_keymap('n', '<Esc>w', ':w <CR>', { noremap = true, silent = true })
@@ -108,11 +116,11 @@ vim.api.nvim_set_keymap('n', '<Esc>x', ':q <CR>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap('n', '<Esc>q', ':wq <CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Esc>a', ':qa! <CR>', { noremap = true, silent = true })
 
--- pyr: esc r, dnr: esc c
-vim.api.nvim_set_keymap('n', '<Esc>r', ':w | :!pyr %<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Esc>c', ':w | :!dnr', { noremap = true, silent = true })
+-- pyr: esc r, dnr: esc b
+vim.api.nvim_set_keymap('n', '<Esc>r', ':w | !~/coding/pyrun.sh %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Esc>b', ':w | !~/coding/dotnetrun.sh %<CR>', { noremap = true, silent = true })
 
--- UndoTree toggle shift esc m
+-- UndoTree toggle esc u
 vim.api.nvim_set_keymap('n', '<Esc>u', ':UndotreeToggle<CR>', { noremap = true, silent = true })
 
 

@@ -1,10 +1,13 @@
+-- change auto dotfiles update to symlink
+
 nvim:
   plugins:
     harpoon 
     wokwi (or equivalent)
 
   keybinds:
-    add C-w to esc s replace
+    {done} add C-w to esc s replace
+    change replace to replace anything highlighted
 
   behaviour:
     stop tab menu when not absolute match
@@ -14,5 +17,6 @@ nvim:
     both relative and absolute line numbers
 
 zsh:
+  add some LLM to zsh
   LaTeX compiler
   tmux?

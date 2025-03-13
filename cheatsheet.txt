@@ -1,4 +1,18 @@
-terminal tips:
+tutorial:
+
+  for conciseness,
+  commands are put in groups of similar, separated by slashes:
+  eg: diw/W: delete word/string under cursor
+  is equivalent to: 
+  diw: delete word under cursor
+  diW: delete string under cursor
+
+  -ignore square brackets in execution
+  -anything with esc is custom
+  -spc is the default leader key for nvchad
+  -some prefer caps to ctrl rather than esc, modify accordingly 
+
+terminal:
 
   tldr [cmd]: display help for [cmd]
   ssha: add key (github) to ssh agent
@@ -52,7 +66,7 @@ terminal tips:
     up/down: cycle through prev cmds
 
 
-nvim cheatsheet:
+nvim:
 
   [use num+hjkl to jump number of characters eg 4j= down 4 lines]
   h: left
@@ -76,7 +90,7 @@ nvim cheatsheet:
       esc c: run c# file
       esc n: new terminal split to right
       esc hjkl: move splits
-      esc u: ':UndotreeToggle' (show file history)
+      esc u: show file history {undotree}
 
       spc /: comment/uncomment line
       spc ff: open file search (telescope)
@@ -91,10 +105,13 @@ nvim cheatsheet:
       b: beginning of previous word
       e: end of next word:
       ctrl d/u: half-page scrolling [25 lines]
-      s/S: search on screen before/after cursor
+      gg/GG: start/end of file
+
+    searching:
+      *: search for word under cursor
       /: search whole file: 
         n/N: next/previous result
-      ctrl home/end: start/end of file
+      s/S: search on screen before/after cursor
 
     inserting:
       i/a: before/after cursor
@@ -114,7 +131,7 @@ nvim cheatsheet:
       dw: word in front of cursor
       diw/W: word/string under cursor
       dd: line
-      d0/d$: from cursor to start/end of line
+      dh/dl: from cursor to start/end of line {custom}
       x: character under cursor
       u: undo
 
@@ -141,13 +158,8 @@ nvim cheatsheet:
       esc t: toggle transparency
       spc esc x: make executable
 
-      ysiw[)]: surround word with [char]
+      ysiw[char]: surround word with [char]
 
       spc rn: toggle relative line num
       spc ch: open cheatsheet (its kinda meh)
-
-notes:
-  -anything with esc is custom
-  -spc is the default leader key for nvchad
-  -some prefer caps to ctrl rather than esc, modify accordingly 
 

@@ -1,7 +1,14 @@
 **My Current (WIP) Linux config:**
 
-**Required Plugins:**
+**Prerequisites:**
+It is highly recommended to rebind Caps Lock to Esc, either by:
+-using GNOME tweaks to set it system-wide
+-using xmodmap in .zshrc to set it in terminal only
+
+zsh: zsh-autosuggestions, zsh-syntax-highlighting, git
 nvim: undotree 
+
+**Info**
 
 -OS: **Ubuntu 24 LTS**
   
