@@ -19,7 +19,7 @@ fi
 mkdir -p "$HOME/coding/{python,notes,dotfiles}"
 
 # zsh setup
-apt install -y zsh git tldr tree curl 2>/dev/null
+apt install -y zsh git tldr btop tree curl 2>/dev/null
 chsh -s $(which zsh)
 
 # oh my zsh
