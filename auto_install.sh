@@ -16,10 +16,10 @@ then
 fi
 
 # making directories
-mkdir "$HOME/coding/python" "$HOME/coding/notes" "$HOME/coding/dotfiles" -p
+mkdir -p "$HOME/coding/{python,notes,dotfiles}"
 
 # zsh setup
-apt install -y zsh git tldr curl 2>/dev/null
+apt install -y zsh git tldr tree curl 2>/dev/null
 chsh -s $(which zsh)
 
 # oh my zsh
@@ -39,7 +39,7 @@ apt update
 apt install neovim
 
 # nvchad
-git clone https://github.com/NvChad/starter $HOME/nvim 
+git clone https://github.com/NvChad/starter $HOME/.config/nvim 
 
 # moving my configs
 git clone https://github.com/ikqxzi/dotfiles $HOME/
@@ -54,7 +54,7 @@ touch $HOME/.transparency_state && echo "opaque" >> $HOME/.transparency_state
 rm -r $HOME/dotfiles
 
 # nvchad plugins
-file="$HOME/testing/.config/nvim/lua/custom/plugins.lua"
+file="$HOME/.config/nvim/lua/custom/plugins.lua"
 
 # Check if plugin file exists 
 if [ ! -f "$file" ]; then
